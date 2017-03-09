@@ -1,7 +1,0 @@
-
-public class ComputeArea {
-	public static void main(System[] args){
-	
-	System.out.println(Math.random()*2);
-}
-}
