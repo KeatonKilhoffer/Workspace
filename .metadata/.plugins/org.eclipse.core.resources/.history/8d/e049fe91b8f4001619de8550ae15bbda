@@ -1,0 +1,27 @@
+public class Testing {
+	public static void main(String[] args){
+		int[][] time = new int[3][3];
+		int[][] matrix = {
+				{1,2,3},
+				{4,5,6},
+				{7,8,9}
+		};
+		for(int row=0; row<matrix.length; row++){
+			System.out.println(" ");
+			for(int column=0; column<matrix[row].length; column++){
+				System.out.print(matrix[row][column] + ", ");
+			}
+		}
+			int i = 0;
+			int k = 0;
+			int yellow;
+			yellow = (matrix[0][0] * ((matrix[1][1] * matrix[2][2]) - (matrix[1][2] * matrix[2][1])));
+			System.out.print(matrix[0][0]);
+			System.out.print(matrix[1][1]);
+		}
+			}
+				
+			
+		
+		
+	

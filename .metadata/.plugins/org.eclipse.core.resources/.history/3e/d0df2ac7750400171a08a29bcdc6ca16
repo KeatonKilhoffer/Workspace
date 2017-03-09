@@ -1,0 +1,37 @@
+/* Create a program that computes the mean
+ * and standard deviation of ten numbers
+ * 1. Prompt the user to enter 10 numbers.
+ * 2. Scan and store the numbers in an array
+ * using a for loop.
+ * 3. 
+ */
+import java.util.Scanner;// Imported to receive user input.
+
+public class Statistics {
+	public static void main(String[] args){
+		
+		//Declare variables.
+		double[] array = new double[10];// Stores input
+		double sum = 0;//Stores the sum of the data in the array
+		double mean = 0;//Stores the average value of the entered data.
+		double deviation = 0;
+		Scanner input = new Scanner(System.in);
+		
+		// 1. Prompt user for input.
+		System.out.println("Enter ten numbers");
+		// 2. Use array to store numbers.
+		for (int a = 0; a < array.length; a++){
+			array[0] = input.nextDouble();
+		}
+		for (int a = 0; a < array.length; a++){
+			sum = sum + array[a];
+		}
+		mean = sum/array.length;
+		System.out.println(sum);
+		System.out.println(mean);
+		
+		
+
+	}
+
+}

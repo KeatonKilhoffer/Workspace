@@ -1,0 +1,136 @@
+/* Create a program that plays rock, paper,
+ * scissors.
+ * This program will need to:
+ * 1. declare variables that will be used in
+ * storing values for computer and user
+ * guesses and score.
+ * 1a. Form a while loop (a do-while could
+ * be used but is not necessary) around the 
+ * next elements of code that will determine
+ * the winner (to win, score must be 2 greater
+ * than opponent's score)
+ * 2. determine the computer and user guesses
+ * with Math.random and the Scanner class.
+ * 3. Compare the guesses using if-else Statements.
+ *  Assign the winner a point
+ * 4. Show current Score.
+ * 5. Quit the program when one opponent
+ * is two points ahead of the other.
+ * 6. Show the results of the game.
+ */
+
+import java.util.Scanner;
+
+public class RockPaperScissors {
+	public static void main(String[] args){
+		
+		System.out.println("Lets play a game of Rock,"
+				+ " Paper, Scissors.\n");
+		System.out.println("	     Pick a number:");
+		System.out.println("		1 = Rock\n"
+				+ "		2 = Paper\n"
+				+ "		3 = Scissors");
+		// 1. declare needed variables
+		// Keeps track of guesses and scores.
+		int playerGuess;
+		int computerGuess;
+		int playerScore = 0;
+		int computerScore = 0;
+		
+		// Not needed except to follow along
+		// easily with the if-else statements.
+		int rock = 1;
+		int paper = 2; 
+		int scissors = 3;
+		
+		// Counter to keep track of rounds.
+		int counter = 1;
+		
+		// Statements for each round.
+		String yr = "You are rock. ";
+		String yp = "You are paper. ";
+		String ys = "You are Scissors. ";
+		String cr = "Computer is rock. ";
+		String cp = "Computer is paper. ";
+		String cs = "Computer is scissors. ";
+		String yw = "You won the round";
+		String yl = "You lost the round";
+		String d = "It is a draw";
+		
+		// 1a. Use a while-loop to continue the game
+		// until one opponent is ahead of the other by 2 points.
+		while (true){
+			
+			counter++;// To keep up with the number of rounds
+			
+			// 2. Determine guesses
+			computerGuess = (int)(Math.random()*3)+1;
+			Scanner input = new Scanner(System.in);
+			System.out.print(" 		  --->");
+			playerGuess = input.nextInt();
+			System.out.println("");
+			
+			// 3. Compare the guesses using if-else Statements.
+			if (playerGuess != 1 && playerGuess != 2 && playerGuess != 3)
+				System.out.print("	      Wrong input\n"
+						+ "	      Pick Again\n");
+			else {
+			if (computerGuess == rock && playerGuess == scissors){
+				System.out.print(cr + ys + yl);
+				computerScore++;}//add to computer score
+			else if (computerGuess == paper && playerGuess == rock){
+				System.out.print(cp + yr + yl);
+				computerScore++;}
+			else if (computerGuess == scissors && playerGuess == paper){
+				System.out.print(cs + yp + yl);
+				computerScore++;}
+			else if (computerGuess == rock && playerGuess == paper){
+				System.out.print(cr + yp + yw);
+				playerScore++;}//add to user score
+			else if (computerGuess == paper && playerGuess == scissors){
+				System.out.print(cp + ys + yw);
+				playerScore++;}
+			else if (computerGuess == scissors && playerGuess == rock){
+				System.out.print(cs + yr + yw);
+				playerScore++;}
+			else if (computerGuess == rock && playerGuess == computerGuess)
+				System.out.print(cr + yr + d);
+			else if (computerGuess == paper && playerGuess == computerGuess)
+				System.out.print(cp + yp + d);
+			else if (computerGuess == scissors && playerGuess == computerGuess)
+				System.out.print(cs + ys + d);
+		
+			// 4. Prints current score.
+			System.out.println("		 The current Score is:");
+			System.out.println("	Player: " + playerScore + 
+					"		Computer: " + computerScore + "\n");
+			
+			// 5. Determines whether to end the loop or not.
+			if(Math.abs(playerScore - computerScore) < 2){
+				System.out.println("		 Round " + counter);
+			}
+			else {
+				break;
+			}
+			}//Bracket for else on line 75.
+			
+		}
+		
+		// 6. Prints the results of the game.
+		if (playerScore > computerScore){
+			System.out.println("		You Won!\n");
+		}
+		else {
+			System.out.println("		You Lost!\n");
+		}
+		
+		// Status.
+		System.out.println("	Score:");
+		System.out.println("Player: " + playerScore + 
+				"		Computer: " + computerScore + "\n");
+		System.out.println("    Rounds:");
+		System.out.println("	 " + counter);
+		
+	}
+
+}

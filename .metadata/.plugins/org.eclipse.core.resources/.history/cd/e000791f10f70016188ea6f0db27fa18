@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class Okay {
+	public static void main(String[] args){
+
+	for (int a = 0; a < 4; a++){
+		System.out.println(((Math.pow(a, 2) % 5) - 1) % 2);
+
+    }
+}
+}

@@ -1,0 +1,38 @@
+
+public class MatrixTest2 {
+	public static void main(String[] args){
+		
+		int[][] matrix = {{01,02,03,04},{05,06,07,8},{9,10,11,12},{13,14,15,16}};
+		int[] address = new int[matrix.length];
+		int[][] storage = new int[(address.length -1) * 2][(address.length -1) * 2];
+		int[][] allocation = new int [matrix.length][matrix.length - 1];
+		
+		for (int row = 0; row < matrix.length; row++){
+			
+			for (int column = 0; column < matrix.length - 1; column++){
+				
+				allocation[row][column] = (column + row + 1) % matrix.length;
+			}
+		}
+		for (int row = 0; row < matrix.length; row++){
+			System.out.println("");
+			for (int column = 0; column < matrix.length - 1; column++)
+				System.out.print(allocation[row][column] + ", ");
+		}
+		//for (int row = 0 )
+		
+		for(int a = 0; a < matrix.length; a++){
+			address[a] = matrix[0][a];
+			// a++; removed because the print statement
+			// showed only every other element in the matrix.
+			for(int b = 0; b < matrix.length - 1; b++){
+				for(int c = 0; c < matrix.length - 1; c++){
+					int shift = ((a+1) % matrix.length);
+					storage[shift][b+((a%2)*3)] = matrix[(c+1)][(b+1)];
+				}
+			}	
+		}
+
+	}
+
+}

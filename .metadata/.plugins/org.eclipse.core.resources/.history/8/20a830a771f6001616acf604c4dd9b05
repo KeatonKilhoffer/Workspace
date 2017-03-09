@@ -1,0 +1,57 @@
+/* design a program to find the determinant
+ * of a matrix.
+ * 1. Construct a 4x4 matrix.
+ * 2. use and address array to store top row.
+ * 3. 
+ * 
+ * 
+ */
+
+public class MatrixTest1 {
+	public static void main(String[] args) {
+		
+		// 1. Matrix two dimensional variable: Contains matrix elements.
+		int[][] matrix = {{01,02,03,04},{05,06,07,8},{9,10,11,12},{13,14,15,16}};
+		// Address variable: Used to store top row of the matrix.
+		int[] address = new int[matrix.length];
+		/* Storage two dimensional variable: An enlarged matrix 
+		 * that allocates memory for a determinant matrix for 
+		 * each address element.
+		 */
+		int[][] storage = new int[(address.length -1) * 2][(address.length -1) * 2];
+
+		
+		// Print 'matrix' to to analyze.
+		for (int row = 0; row < matrix.length; row++){
+			System.out.println("");
+			for (int column = 0; column < matrix.length; column++)
+				System.out.print(matrix[row][column] + ", ");
+		}
+		System.out.println("");
+		for(int a = 0; a < matrix.length; a++){
+			address[a] = matrix[0][a];
+			// a++; removed because the print statement
+			// showed only every other element in the matrix.
+			for(int b = 0; b < matrix.length - 1; b++){
+				for(int c = 0; c < matrix.length - 1; c++){
+					int shift = ((a+b+1) % matrix.length);
+					storage[b][shift] = matrix[b+1][shift];
+				}
+			}	
+		}
+		for(int row = 0; row < (matrix.length-1) * 2; row++){
+			System.out.println("");
+			for(int column = 0; column < (matrix.length-1) * 2; column++){
+				System.out.print(storage[row][column] + ", ");
+			}
+		}
+		
+	}
+}
+
+
+/* Notes:
+ * On line 12: '08' and '09' are not allowed.
+ * Values are considered out of the 'int' range.
+ * On line 
+ */

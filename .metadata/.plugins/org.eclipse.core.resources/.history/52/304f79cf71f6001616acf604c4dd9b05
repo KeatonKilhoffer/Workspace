@@ -1,0 +1,13 @@
+/* design a program to find the determinant
+ * of a matrix.
+ * 1. Construct a 4x4 matrix.
+ * 2. use and address array to strore
+ * 
+ * 
+ */
+
+public class Text2 {
+	public static void main(String[] args) {
+
+	}
+}

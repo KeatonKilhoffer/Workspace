@@ -1,0 +1,28 @@
+/* Create a program that ask the 
+ * user to enter a string then 
+ * processes the string to find and
+ * keep count of all uppercase letters.
+ * 1. Create a variable to store the string in.
+ * 2. Prompt the user to enter a string.
+ * 3. 
+ */
+import java.util.Scanner;
+
+public class CountUppercaseLetters {
+
+	public static void main(String[] args){
+	
+		System.out.println("Enter a string: ");
+		Scanner input = new Scanner(System.in);
+		String userString = input.next();
+		int upper = 0;
+		
+		for (int a = 0; a < userString.length(); a++){
+			System.out.println(userString.charAt(a));
+			
+			
+		}
+		
+
+	}
+}

@@ -1,0 +1,13 @@
+public class Text {
+	public static void main(String[] args){
+		int i = 0;
+		int number = 3;
+		int k = 1;
+		switch (number) {
+		case i: System.out.print("The card you picked is Ace "); break;
+		case k: System.out.print("The card you picked is 2 "); break;
+	
+		}
+		
+	}
+}

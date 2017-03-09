@@ -1,0 +1,19 @@
+/* Create a program that plays rock, paper,
+ * scissors.
+ * This program will need to:
+ * 1. declare variables that will be used in
+ * storing values for computer and user
+ * guesses and score.
+ * 1a. Form a while loop (a do-while could
+ * be used but is not necessary) around the 
+ * next elements of code that will determine
+ * the winner (to win, score must be 2 greater
+ * than opponent's score)
+ * 2. determine the computer and user guesses
+ * with Math.random and the Scanner class.
+ * 3. Compare the guesses using 
+ * 
+ */
+public class RockPaperScissors {
+
+}
