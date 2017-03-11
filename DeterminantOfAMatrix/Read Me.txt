@@ -1,0 +1,86 @@
+Program Notes for finding the determinant of a 4x4 matrix.
+
+Breaking down the below contents:
+The row of numbers (1 2 2 3 3 1) stands for a place in a two dimensional array.
+Also, the row of numbers (1 2 2 3 3 1) states what values in the array are to be multipied.
+	
+	Example: (1 2 2 3 3 1)
+	if: [1][2] = 3;
+		[2][3] = 4;
+		[3][1] = 6;
+		
+    and: [1][2] x [2][3] x [3][1]
+	
+	then: 3 x 4 x 6 = 72;
+
+Notes:
+definition1 = matrix[0][0] * ((1 1 2 2 3 3 + 1 2 2 3 3 1 + 1 3 2 1 3 2) - (1 3 2 2 3 1 + 1 1 2 3 3 2 + 1 2 2 1 3 3))
+definition2 = matrix[0][1] * ((1 0 2 2 3 3 + 1 2 2 3 3 0 + 1 3 2 0 3 2) - (1 3 2 2 3 0 + 1 0 2 3 3 2 + 1 2 2 0 3 3))
+definition3 = matrix[0][2] * ((1 0 2 1 3 3 + 1 1 2 3 3 0 + 1 3 2 0 3 1) - (1 3 2 1 3 0 + 1 0 2 3 3 1 + 1 1 2 0 3 3))
+definition4 = matrix[0][3] * ((1 0 2 1 3 2 + 1 1 2 2 3 0 + 1 0 2 0 3 1) - (1 2 2 1 3 0 + 1 0 2 2 3 1 + 1 1 2 0 3 2))
+
+determinant = (definition1 - definition2 + definition3 - definition4)
+
+A = 0 - delta 4 (A = 0 but changes between 4 values)
+B = 1 - delta 3
+C = 0 - delta 3
+
+Allocation shifts right after each strand of 6 digits(representing 3 positions in the array)
+is multiplied together.
+
+
+Allocation matrix design:	
+		
+		1, 2, 3, 
+		2, 3, 0, 
+		3, 0, 1, 
+		0, 1, 2, 
+		
+Allocation matrix rearanged(least to greatest from right to left) using loop:
+
+		1, 2, 3, 
+		0, 2, 3, 
+		0, 1, 3, 
+		0, 1, 2, 
+		
+(1 1 2 2 3 3 + 1 2 2 3 3 1 + 1 3 2 1 3 2)
+(1 0 2 2 3 3 + 1 2 2 3 3 0 + 1 3 2 0 3 2)
+(1 0 2 1 3 3 + 1 1 2 3 3 0 + 1 3 2 0 3 1)
+(1 0 2 1 3 2 + 1 1 2 2 3 0 + 1 0 2 0 3 1)
+
+Outside loop: declare these variables
+double sumPositiveSet = 0;
+double sumNegativeSet = 0;
+double positiveSet = 1;
+double negativeSet = 1;
+double determinant = 1;
+
+double[] definition = new double[matrix.length];
+
+Inside loop A:
+
+Inside loop B:
+sumPositiveSet = sumPositiveSet + positiveSet;
+sumNegativeSet = sumNegativeSet + negativeSet;
+
+Inside loop C:
+int forwardCounter = ((b - 1 + c) % 3);
+int backwardCounter = ((b + 1 - c) % 3);
+
+int positiveSet = positiveSet * matrix[b][allocation[a][forwardCounter]];
+int negativeSet = negativeSet * matrix[b][allocation[a][backwardCounter]];
+
+if (c == 2){
+sumPositiveSet = sumPositiveSet + positiveSet;
+sumNegativeSet = sumNegativeSet + negativeSet;
+}
+if (b == 3){
+definition[a] = matrix[0][a] * (sumPositiveSet - sumNegativeSet);
+}
+
+Outside loop:
+for (int a = 0; a < 4; a++){
+determinant = determinant + definition[a];
+}
+
+

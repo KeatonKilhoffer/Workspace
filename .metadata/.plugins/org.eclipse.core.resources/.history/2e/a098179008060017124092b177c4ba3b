@@ -7,7 +7,7 @@ public class MatrixTest2 {
 	public static void main(String[] args) {
 		
 		double[][] matrix = { { 1, 2, 2, 3}, { 2, 1, 2, 1}, { 3, 2, 1, 1}, { 2, 1, 3, 2}};
-		//double[][] matrix = { { 1, 2, 3, 4}, { 5, 6, 7, 8}, { 9, 10, 11, 12}, { 13, 14, 15, 16}};
+		
 		//double[][] matrix = { { 10, 20, 30, 40 }, { 50, 60, 70, 80 }, { 90, 11, 12, 13 }, { 14, 15, 16, 17 } };
 		// int[] address = new int[matrix.length]; // Not needed. old design.
 		// for use with storage matrix.
@@ -137,36 +137,27 @@ public class MatrixTest2 {
 			positiveSet[a] = 1;
 			negativeSet[a] = 1;
 			for (int b = 1; b < matrix.length; b++) {
-				sumPositiveSet = sumPositiveSet + (positiveSet[a] * matrix[0][a]);
-				sumNegativeSet = sumNegativeSet + (negativeSet[a] * matrix[0][a]);
+				sumPositiveSet = sumPositiveSet + positiveSet[a];
+				sumNegativeSet = sumNegativeSet + negativeSet[a];
 				//System.out.println(sumPositiveSet + "   " + sumNegativeSet);
 				
 				for (int c = 0; c < matrix.length - 1; c++) {
 
 					int forwardCounter = ((b - 1 + c) % 3);
 					int backwardCounter = ((b + 1 - c) % 3);
-					//System.out.print(forwardCounter + "  ");
-					//System.out.println(backwardCounter);
-					//System.out.print((int)allocation[a][forwardCounter] + "  ");
-					//System.out.println((int)allocation[a][backwardCounter]);
-					//System.out.println(matrix[c][(int)allocation[a][forwardCounter]] + "  ");
-					//System.out.println(c + 1);
-					//System.out.println(matrix[b][(int)allocation[a][backwardCounter]]);
+					
+					//System.out.println(matrix[b][(int)allocation[a][forwardCounter]]);
 					//System.out.println("positive " + positiveSet[a]);
-					positiveSet[a] = positiveSet[a] * matrix[c + 1][(int)allocation[a][forwardCounter]];
-					negativeSet[a] = negativeSet[a] * matrix[c + 1][(int)allocation[a][backwardCounter]];
+					positiveSet[a] = positiveSet[a] * matrix[b][(int)allocation[a][forwardCounter]];
+					negativeSet[a] = negativeSet[a] * matrix[b][(int)allocation[a][backwardCounter]];
 					System.out.print(positiveSet[a] + "   ");
 					System.out.println(negativeSet[a]);
 					if (c == 2) {
 						sumPositiveSet = sumPositiveSet + positiveSet[a];
 						sumNegativeSet = sumNegativeSet + negativeSet[a];
 					}
-					if (b == 3 && c == 2) {
+					if (b == 3) {
 						definition[a] = matrix[0][a] * (sumPositiveSet - sumNegativeSet);
-						//System.out.println(matrix[0][a]); // matrix reading correctly.
-						//System.out.println(sumPositiveSet);
-						//System.out.println(sumNegativeSet);
-						//System.out.println(definition[a]);
 					}
 
 				}

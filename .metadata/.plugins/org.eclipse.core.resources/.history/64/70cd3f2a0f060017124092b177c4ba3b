@@ -137,8 +137,8 @@ public class MatrixTest2 {
 			positiveSet[a] = 1;
 			negativeSet[a] = 1;
 			for (int b = 1; b < matrix.length; b++) {
-				sumPositiveSet = sumPositiveSet + (positiveSet[a] * matrix[0][a]);
-				sumNegativeSet = sumNegativeSet + (negativeSet[a] * matrix[0][a]);
+				sumPositiveSet = sumPositiveSet + positiveSet[a];
+				sumNegativeSet = sumNegativeSet + negativeSet[a];
 				//System.out.println(sumPositiveSet + "   " + sumNegativeSet);
 				
 				for (int c = 0; c < matrix.length - 1; c++) {
