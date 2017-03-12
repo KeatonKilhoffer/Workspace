@@ -26,7 +26,8 @@ public class RPC {
 	public static void main(String[] args){
 		
 		System.out.println("Lets play a game of Rock,"
-				+ " Paper, Scissors.\n");
+				+ " Paper, Scissors!\n" +
+				"     Win by a lead score of 2 points!\n");
 		System.out.println("	     Pick a number:");
 		System.out.println("		1 = Rock\n"
 				+ "		2 = Paper\n"
