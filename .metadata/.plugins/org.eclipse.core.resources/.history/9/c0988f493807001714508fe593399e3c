@@ -169,7 +169,7 @@ public class MatrixTest3 {
 		//for (int a = 0; a < 4; a++) {
 			//determinant = determinant + definition[a];
 			// System.out.println(definition[a]);
-		//}
+		}
 		//System.out.println(tempLocation1);
 		// System.out.print(determinant);
 	}

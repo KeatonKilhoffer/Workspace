@@ -144,13 +144,12 @@ public class MatrixTest3 {
 					// System.out.println(positiveSet[a] + " ");
 					//System.out.println(negativeSet[a]);
 
-					//if (c == 2) {
-					//	sumPositiveSet = sumPositiveSet + positiveSet[a];
-					//	sumNegativeSet = sumNegativeSet + negativeSet[a];
-					//}
-					//if (b == 3 && c == 2) {
-					//	definition[a] = matrix[0][a] * (sumPositiveSet - sumNegativeSet);
-					//}
+					if (c == 2) {
+						sumPositiveSet = sumPositiveSet + positiveSet[a];
+						sumNegativeSet = sumNegativeSet + negativeSet[a];
+					}
+					if (b == 3 && c == 2) {
+						definition[a] = matrix[0][a] * (sumPositiveSet - sumNegativeSet);
 
 						// System.out.println(matrix[0][a]); // matrix reading
 						// correctly.
@@ -169,7 +168,7 @@ public class MatrixTest3 {
 		//for (int a = 0; a < 4; a++) {
 			//determinant = determinant + definition[a];
 			// System.out.println(definition[a]);
-		//}
+		}
 		//System.out.println(tempLocation1);
 		// System.out.print(determinant);
 	}

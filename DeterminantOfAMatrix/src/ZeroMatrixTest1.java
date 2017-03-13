@@ -1,9 +1,4 @@
-/* Determinant of a matrix program:
- * Quick Note: the program has elements that
- * may be not be nessesary 
- * 
- */
-public class MatrixTest3 {
+public class ZeroMatrixTest1 {
 	public static void main(String[] args) {
 
 		 double[][] matrix = { { 1, 2, 2, 3}, { 2, 1, 2, 1}, { 3, 2, 1, 1}, {
@@ -71,6 +66,15 @@ public class MatrixTest3 {
 			}
 		}
 
+		for (int time = 0; time < matrix.length; time++) {
+			for (int row = 0; row < matrix.length; row++) {
+				for (int column = 0; column < matrix.length; column++) {
+					matrix[time](matrix[row][time] / matrix[time][time]) 
+
+				}
+			}
+		}
+		
 		for (int a = 0; a < matrix.length; a++) {
 			positiveSet[a] = 1;
 			negativeSet[a] = 1;
