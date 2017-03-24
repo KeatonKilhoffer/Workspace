@@ -1,0 +1,97 @@
+
+/* Create a Program that simulates the
+ * Bean Machine.
+ * Program Requirements: Use Methods
+ * Program Outline: 
+ * 1. When dropped, the bean will have the 
+ * opportunity to fall right or left 5 times. 
+ * This decision will be made using Math.random 
+ * and the number will be limited to 0 and 1.
+ * 2. A method is called upon to decide the left
+ * and right directions.
+ * 
+ */
+import java.util.Scanner;
+
+public class BeanMachineGame {
+	private static int[][] storage = new int[100][5];
+	private static int[] counter = new int[100];
+	private static int[] bin = new int[6];
+
+	public static void main(String[] args) {
+
+		// Prompt the user to press 'Enter" to start the simulation.
+		System.out.println("Welcome to the Bean Machine Game");
+		System.out.println("Press 'Enter' to start the simulation");
+		Scanner input = new Scanner(System.in);
+		input.nextLine();
+
+		/*
+		 * For-loop stores the number of left and right turns that the bean
+		 * makes.
+		 */
+		for (int a = 0; a < 100; a++) {
+			for (int b = 0; b < 5; b++) {
+				storage[a][b] = direction();
+			}
+		}
+		System.out.println("");
+		binCounter();
+	}
+
+	/*
+	 * Direction method produces an integer values pertaining to 0 (left) and 1
+	 * (right).
+	 */
+	public static int direction() {
+
+		int number = ((int) (Math.random() * 2));
+		return number;
+
+	}
+
+	/*
+	 * Bin method determines the bin that the bean landed in by adding the
+	 * number of turns together.
+	 */
+	public static void bin() {
+		for (int a = 0; a < 100; a++) {
+			for (int b = 0; b < 5; b++) {
+				counter[a] = counter[a] + storage[a][b];
+			}
+		}
+		for (int a = 0; a < 100; a++) {
+			System.out.print(counter[a]);
+		}
+	}
+
+	public static void binCounter() {
+		for (int a = 0; a < 100; a++) {
+			System.out.print(counter[a]);
+			switch (counter[a]) {
+			case 0:
+				bin[0]++;
+				break;
+			case 1:
+				bin[1]++;
+				break;
+			case 2:
+				bin[2]++;
+				break;
+			case 3:
+				bin[3]++;
+				break;
+			case 4:
+				bin[4]++;
+				break;
+			case 5:
+				bin[5]++;
+				break;
+			}
+		}
+		for (int a = 0; a < 6; a++) {
+			System.out.println("The total number of beans in bin " + (a + 1) + " = " + bin[a]);
+		}
+	}
+
+}

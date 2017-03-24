@@ -1,0 +1,35 @@
+
+/* Create a Program that simulates the
+ * Bean Machine.
+ * Program Requirements: Use Methods
+ * Program Outline: 
+ * 1. When dropped, the bean will have the 
+ * opportunity to fall right or left 5 times. 
+ * This decision will be made using Math.random 
+ * and the number will be limited to 0 and 1.
+ * 2. A method is called upon to decide the left
+ * and right directions.
+ * 
+ */
+import java.util.Scanner;
+
+public class BeanMachineGame {
+	public static void main(String[] args) {
+
+		System.out.println("Welcome to the Bean Machine Game");
+		System.out.println("Press 'Enter' to start the simulation");
+		Scanner input = new Scanner(System.in);
+		input.nextLine();
+
+		for (int a = 1; a < 100; a++) {
+			int direction = (int) (Math.random() * 2);
+			System.out.println(direction);
+		}
+
+	}
+
+	public static int direction() {
+
+	}
+
+}

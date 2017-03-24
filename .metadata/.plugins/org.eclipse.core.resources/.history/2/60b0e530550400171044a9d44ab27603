@@ -1,9 +1,0 @@
-/* Create a program that simulates the 
- * 
- */
-public class CoinToss {
-	public static void main(String[] args){
-		
-	}
-
-}

@@ -1,0 +1,12 @@
+public class Text {
+	public static void main(String[] args){
+		
+		int node = 1;
+		int node2 = 2;
+		
+		while(node != node2){
+			System.out.println(node);
+		}
+	}
+	
+}

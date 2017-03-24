@@ -1,9 +1,0 @@
-/* Create a program that simulates the flipping a coin 
- * 
- */
-public class CoinToss {
-	public static void main(String[] args){
-		
-	}
-
-}
