@@ -1,0 +1,141 @@
+
+/* Create a Program that simulates the
+ * Bean Machine.
+ * Program Requirements: Use Methods
+ * Program Outline: 
+ * 1a. When dropped, the bean will have the 
+ * opportunity to fall right or left 5 times. 
+ * This decision will be made using Math.random 
+ * and the number will be limited to 0(left) and 1(right).
+ * 1b. Method called upon for turn decision.
+ * 2a. Use a for-loop that calls out the bin method 
+ * 2b. The bin method counts the turns each bean makes 
+ * which determines the bin that the bean landed in.
+ * 3a. Call binCouter method.
+ * 3b. binCounter method uses a switch statement to
+ * count the number of beans in each bin.  
+ * 
+ */
+import java.util.Scanner;
+
+public class BeanMachineGame {
+	private static int[][] storage = new int[100][5]; // Stores the turns made
+														// by each bean
+	private static int[] counter = new int[100]; // Stores the number right
+													// turns made to determine
+													// the bin.
+	private static int[] bin = new int[6]; // Stores the number of beans in each
+											// bin.
+
+	public static void main(String[] args) {
+
+		// Prompt the user to press 'Enter" to start the simulation.
+		System.out.println("Welcome to the Bean Machine Game");
+		System.out.println("Press 'Enter' to start the simulation");
+		Scanner input = new Scanner(System.in);
+		input.nextLine();
+
+		// Ask the user to input the amount of beans to use.
+		userInputForBeanCount();
+		// Ask the user to input the number of bins in which the
+		// could possibly fall into.
+
+		/*
+		 * 1a. For-loop stores the number of left and right turns that the bean
+		 * makes.
+		 */
+		for (int a = 0; a < 100; a++) {
+			for (int b = 0; b < 5; b++) {
+				storage[a][b] = direction();
+			}
+		}
+
+		/*
+		 * 2a. For-loop to call bin method for each bean.
+		 * 
+		 */
+		for (int a = 0; a < 100; a++) {
+			for (int b = 0; b < 5; b++) {
+				bin(a, b);
+			}
+		}
+		System.out.println("");
+		// 3a. binCounter method counts the number of beans in each bin.
+		binCounter();
+	}
+
+	public static int userInputForBeanCount() {
+		do {
+			try {
+				System.out.println("Enter the amount of "
+						+ "beans to be used in the simulation");
+				Scanner input = new Scanner(System.in);
+				int beanAmountInput = input.nextInt();
+				
+				boolean error = false;
+				return beanAmountInput;
+	
+			}
+			
+			catch(Error wrongInput){
+				System.out.println("Wrong input. Enter an Interger.");
+				boolean error = true;
+			}
+		} while(true);
+	}
+
+	/*
+	 * 1b. Direction method produces an integer values pertaining to 0 (left)
+	 * and 1 (right).
+	 */
+	public static int direction() {
+
+		int number = ((int) (Math.random() * 2));
+		return number;
+
+	}
+
+	/*
+	 * 2b. Bin method determines the bin that the bean landed in by adding the
+	 * number of turns together.
+	 */
+	public static int bin(int a, int b) {
+
+		counter[a] = counter[a] + storage[a][b];
+
+		for (int c = 0; c < 100; c++) {
+			// System.out.print(counter[a]);
+		}
+		return counter[a];
+	}
+
+	// 3b. binCounter add the number of beans in each bin.
+	public static void binCounter() {
+		for (int a = 0; a < 100; a++) {
+			switch (counter[a]) {
+			case 0:
+				bin[0]++;
+				break;
+			case 1:
+				bin[1]++;
+				break;
+			case 2:
+				bin[2]++;
+				break;
+			case 3:
+				bin[3]++;
+				break;
+			case 4:
+				bin[4]++;
+				break;
+			case 5:
+				bin[5]++;
+				break;
+			}
+		}
+		for (int a = 0; a < 6; a++) {
+			System.out.println("The total number of beans in bin " + (a + 1) + " = " + bin[a]);
+		}
+	}
+
+}

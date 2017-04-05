@@ -20,8 +20,8 @@ import java.util.Scanner;
 
 public class BeanMachineGame {
 
-	public static int beanCount = userInputForBeanCount();
-	public static int binCount = userInputForBinCount();
+	static int beanCount = userInputForBeanCount();
+	static int binCount = userInputForBinCount();
 	public static int[] beansInBin = new int[binCount - 1];
 
 	public static void main(String[] args) {
@@ -29,6 +29,8 @@ public class BeanMachineGame {
 		// Prompt the user to press 'Enter" to start the simulation.
 		System.out.println("Welcome to the Bean Machine Game");
 		System.out.println("Press 'Enter' to start the simulation");
+		Scanner startInput = new Scanner(System.in);
+		startInput.nextLine();
 		// Scanner input = new Scanner(System.in);
 		// input.nextLine();
 
@@ -144,7 +146,7 @@ public class BeanMachineGame {
 		for (int a = 0; a < beanCount; a++) {
 			for (int b = 0; b < binCount; b++) {
 				if (binNumber == b) {
-					beansInBin[b] = beansInBin[b] + 1;
+					beansInBin[a]++;
 
 				}
 			}

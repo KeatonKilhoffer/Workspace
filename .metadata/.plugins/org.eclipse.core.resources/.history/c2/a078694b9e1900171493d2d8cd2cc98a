@@ -20,8 +20,8 @@ import java.util.Scanner;
 
 public class BeanMachineGame {
 
-	public static int beanCount = userInputForBeanCount();
-	public static int binCount = userInputForBinCount();
+	static int beanCount = userInputForBeanCount();
+	static int binCount = userInputForBeanCount();
 	public static int[] beansInBin = new int[binCount - 1];
 
 	public static void main(String[] args) {
@@ -35,6 +35,7 @@ public class BeanMachineGame {
 		// Ask the user to input the amount of beans to use.
 
 		// Ask the user to input the number of bins in which the
+		int binCount = userInputForBeanCount();
 		// could possibly fall into.
 		int[][] storage = new int[beanCount][binCount - 1]; // Stores the turns
 															// made by each
@@ -70,9 +71,6 @@ public class BeanMachineGame {
 
 			binCounter(beanCount, binNumber, binCount);
 		}
-		for (int a = 0; a < binCount - 1; a++){
-			System.out.println(beansInBin[a]);
-		}
 	}
 
 	public static int userInputForBeanCount() {
@@ -98,7 +96,7 @@ public class BeanMachineGame {
 	public static int userInputForBinCount() {
 		do {
 			try {
-				System.out.println("Enter the amount of " + "bins to be used in the simulation");
+				System.out.println("Enter the amount of " + "beans to be used in the simulation");
 				Scanner input = new Scanner(System.in);
 				int binAmountInput = input.nextInt();
 				input.close();
@@ -144,7 +142,7 @@ public class BeanMachineGame {
 		for (int a = 0; a < beanCount; a++) {
 			for (int b = 0; b < binCount; b++) {
 				if (binNumber == b) {
-					beansInBin[b] = beansInBin[b] + 1;
+					beansInBin[a]++;
 
 				}
 			}
@@ -154,4 +152,7 @@ public class BeanMachineGame {
 		}
 	}
 
+	public int tempBeanCount(){
+		return beanCount;
+	}
 }

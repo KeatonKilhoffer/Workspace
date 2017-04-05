@@ -19,36 +19,34 @@
 import java.util.Scanner;
 
 public class BeanMachineGame {
-
-	public static int beanCount = userInputForBeanCount();
-	public static int binCount = userInputForBinCount();
-	public static int[] beansInBin = new int[binCount - 1];
+	private static int[][] storage = new int[beanCount][binCount]; // Stores the turns made
+														// by each bean
+	private static int[] counter = new int[100]; // Stores the number right
+													// turns made to determine
+													// the bin.
+	private static int[] bin = new int[6]; // Stores the number of beans in each
+											// bin.
 
 	public static void main(String[] args) {
 
 		// Prompt the user to press 'Enter" to start the simulation.
 		System.out.println("Welcome to the Bean Machine Game");
 		System.out.println("Press 'Enter' to start the simulation");
-		// Scanner input = new Scanner(System.in);
-		// input.nextLine();
+		//Scanner input = new Scanner(System.in);
+		//input.nextLine();
 
 		// Ask the user to input the amount of beans to use.
-
+		int beanCount = userInputForBeanCount();
 		// Ask the user to input the number of bins in which the
+		int binCount = userInputForBeanCount();
 		// could possibly fall into.
-		int[][] storage = new int[beanCount][binCount - 1]; // Stores the turns
-															// made by each
-															// bean.
-		int[] counter = new int[beanCount]; // Stores the number of right
-		// turns made to determine the bin.
-		int[] bin = new int[binCount]; // Stores the number of beans in each
-										// bin.
+
 		/*
 		 * 1a. For-loop stores the number of left and right turns that the bean
 		 * makes.
 		 */
 		for (int a = 0; a < beanCount; a++) {
-			for (int b = 0; b < binCount - 1; b++) {
+			for (int b = 0; b < binCount; b++) {
 				storage[a][b] = direction();
 			}
 		}
@@ -57,22 +55,14 @@ public class BeanMachineGame {
 		 * 2a. For-loop to call bin method for each bean.
 		 * 
 		 */
-		for (int a = 0; a < beanCount; a++) {
-			for (int b = 0; b < binCount - 1; b++) {
-				int c = storage[a][b];
-				counter[a] = whichBin(a, b, c, beanCount);
+		for (int a = 0; a < 100; a++) {
+			for (int b = 0; b < 5; b++) {
+				bin(a, b);
 			}
 		}
 		System.out.println("");
 		// 3a. binCounter method counts the number of beans in each bin.
-		for (int a = 0; a < beanCount; a++) {
-			int binNumber = counter[a];
-
-			binCounter(beanCount, binNumber, binCount);
-		}
-		for (int a = 0; a < binCount - 1; a++){
-			System.out.println(beansInBin[a]);
-		}
+		binCounter();
 	}
 
 	public static int userInputForBeanCount() {
@@ -98,7 +88,7 @@ public class BeanMachineGame {
 	public static int userInputForBinCount() {
 		do {
 			try {
-				System.out.println("Enter the amount of " + "bins to be used in the simulation");
+				System.out.println("Enter the amount of " + "beans to be used in the simulation");
 				Scanner input = new Scanner(System.in);
 				int binAmountInput = input.nextInt();
 				input.close();
@@ -129,28 +119,42 @@ public class BeanMachineGame {
 	 * 2b. Bin method determines the bin that the bean landed in by adding the
 	 * number of turns together.
 	 */
-	public static int whichBin(int a, int b, int c, int beanCount) {
-		int[] innerMethodCounter = new int[beanCount];
-		innerMethodCounter[a] = innerMethodCounter[a] + c;
+	public static int bin(int a, int b) {
 
-		for (int d = 0; d < beanCount; d++) {
+		counter[a] = counter[a] + storage[a][b];
+
+		for (int c = 0; c < 100; c++) {
 			// System.out.print(counter[a]);
 		}
-		return innerMethodCounter[a];
+		return counter[a];
 	}
 
 	// 3b. binCounter add the number of beans in each bin.
-	public static void binCounter(int beanCount, int binNumber, int binCount) {
-		for (int a = 0; a < beanCount; a++) {
-			for (int b = 0; b < binCount; b++) {
-				if (binNumber == b) {
-					beansInBin[b] = beansInBin[b] + 1;
-
-				}
+	public static void binCounter() {
+		for (int a = 0; a < 100; a++) {
+			switch (counter[a]) {
+			case 0:
+				bin[0]++;
+				break;
+			case 1:
+				bin[1]++;
+				break;
+			case 2:
+				bin[2]++;
+				break;
+			case 3:
+				bin[3]++;
+				break;
+			case 4:
+				bin[4]++;
+				break;
+			case 5:
+				bin[5]++;
+				break;
 			}
 		}
-		for (int a = 0; a < binNumber; a++) {
-			System.out.println("The total number of beans in bin " + (a + 1) + " = " + beansInBin[a]);
+		for (int a = 0; a < 6; a++) {
+			System.out.println("The total number of beans in bin " + (a + 1) + " = " + bin[a]);
 		}
 	}
 
