@@ -20,26 +20,32 @@ import java.util.Scanner;
 
 public class BeanMachineGame {
 
-	public static int beanCount = userInputForBeanCount();
-	public static int binCount = userInputForBinCount();
-	public static int[] beansInBin = new int[binCount - 1];
+	public static int beanCount = 0;
+	public static int binCount = 0;
 
 	public static void main(String[] args) {
 
 		// Prompt the user to press 'Enter" to start the simulation.
 		System.out.println("Welcome to the Bean Machine Game");
 		System.out.println("Press 'Enter' to start the simulation");
-		// Scanner input = new Scanner(System.in);
-		// input.nextLine();
+		
+		Scanner EnterKey = new Scanner(System.in);
+		EnterKey.nextLine();
 
 		// Ask the user to input the amount of beans to use.
-
+		beanCount = userInputForBeanCount();
+		System.out.println(beanCount);
 		// Ask the user to input the number of bins in which the
 		// could possibly fall into.
-		int[][] storage = new int[beanCount][binCount - 1]; // Stores the turns
+		binCount = userInputForBinCount();
+		System.out.println(binCount);
+		
+		int[] beansInBin = new int[binCount - 1];
+		
+		int[][] storageOfEachBeansTurn = new int[beanCount][binCount - 1]; // Stores the turns
 															// made by each
 															// bean.
-		int[] counter = new int[beanCount]; // Stores the number of right
+		int[] counterOfBeanTurns = new int[beanCount]; // Stores the number of right
 		// turns made to determine the bin.
 		int[] bin = new int[binCount]; // Stores the number of beans in each
 										// bin.
@@ -49,7 +55,7 @@ public class BeanMachineGame {
 		 */
 		for (int a = 0; a < beanCount; a++) {
 			for (int b = 0; b < binCount - 1; b++) {
-				storage[a][b] = direction();
+				storageOfEachBeansTurn[a][b] = beanDirection();
 			}
 		}
 
@@ -59,66 +65,74 @@ public class BeanMachineGame {
 		 */
 		for (int a = 0; a < beanCount; a++) {
 			for (int b = 0; b < binCount - 1; b++) {
-				int c = storage[a][b];
-				counter[a] = whichBin(a, b, c, beanCount);
+				counterOfBeanTurns[a] = counterOfBeanTurns[a] + storageOfEachBeansTurn[a][b];
 			}
 		}
 		System.out.println("");
 		// 3a. binCounter method counts the number of beans in each bin.
 		for (int a = 0; a < beanCount; a++) {
-			int binNumber = counter[a];
+			int tempBinLocation = bin[a];
+			for(int b = 0; b < binCount; b++) {
+			
+				if(b == counterOfBeanTurns[a]){
+					bin[b] = bin[b] + tempBinLocation;
+					
+				}
+				
+			}
 
-			binCounter(beanCount, binNumber, binCount);
 		}
-		for (int a = 0; a < binCount - 1; a++){
-			System.out.println(beansInBin[a]);
+		for (int a = 1; a < binCount; a++){
+			System.out.println("The amount of beans in bin " + a 
+					+ " = " + bin[a - 1]);
 		}
 	}
 
 	public static int userInputForBeanCount() {
+		int beanAmountInput = 0;
 
 		do {
 			try {
 				System.out.println("Enter the amount of " + "beans to be used in the simulation");
 				Scanner input = new Scanner(System.in);
-				int beanAmountInput = input.nextInt();
-				System.out.println(beanAmountInput);
-				return beanAmountInput;
-
+				beanAmountInput = input.nextInt();
+				System.out.println("The number of beans to be used is: " + beanAmountInput);
+				break;
 			}
-
 			catch (Exception wrongInput) {
 				System.out.println("Wrong input. Enter an Interger.");
 			}
 
 		} while (true);
-
+		return beanAmountInput;
 	}
 
 	public static int userInputForBinCount() {
+		int binAmountInput = 0;
 		do {
 			try {
 				System.out.println("Enter the amount of " + "bins to be used in the simulation");
 				Scanner input = new Scanner(System.in);
-				int binAmountInput = input.nextInt();
+				binAmountInput = input.nextInt();
 				input.close();
-				System.out.println(binAmountInput);
-				return binAmountInput;
+				System.out.println("The number of bins to be used is: " + binAmountInput);
+				//return binAmountInput;
+				break;
 
 			}
-
 			catch (Exception wrongInput) {
 				System.out.println("Wrong input. Enter an Interger.");
 			}
 
 		} while (true);
+		return binAmountInput;
 	}
 
 	/*
 	 * 1b. Direction method produces an integer values pertaining to 0 (left)
 	 * and 1 (right).
 	 */
-	public static int direction() {
+	public static int beanDirection() {
 
 		int number = ((int) (Math.random() * 2));
 		return number;
@@ -140,18 +154,6 @@ public class BeanMachineGame {
 	}
 
 	// 3b. binCounter add the number of beans in each bin.
-	public static void binCounter(int beanCount, int binNumber, int binCount) {
-		for (int a = 0; a < beanCount; a++) {
-			for (int b = 0; b < binCount; b++) {
-				if (binNumber == b) {
-					beansInBin[b] = beansInBin[b] + 1;
 
-				}
-			}
-		}
-		for (int a = 0; a < binNumber; a++) {
-			System.out.println("The total number of beans in bin " + (a + 1) + " = " + beansInBin[a]);
-		}
-	}
 
 }
